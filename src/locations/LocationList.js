@@ -16,15 +16,15 @@ export const LocationList = () => {
     )
 
     return (
-        <h1>Locations</h1>
-
-        // {
-        //     locations.map(
-        //         (locationObject) => {
-        //             return <p key={`location--${locationObject.id}`}>{location.address}</p>
-        //         }
-        //     )
-        // }
+        <>
+        {
+            locations.map(
+                (locationObject) => {
+                    return <p key={`location--${locationObject.id}`}>{locationObject.address}</p>
+                }
+            )
+        }
+        </>
     )
 
 }
