@@ -6,7 +6,7 @@ export const ProductList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8090/products?_expand=productType")
+            fetch("http://localhost:8090/products?_expand=productType&_sort=productTypeId&_order=asc")
                 .then(res => res.json())
                 .then((productArray) => {
                     modifyProducts(productArray)

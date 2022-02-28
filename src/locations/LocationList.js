@@ -6,7 +6,7 @@ export const LocationList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8089/locations")
+            fetch("http://localhost:8090/locations")
                 .then(res => res.json())
                 .then((locationArray) => {
                     modifyLocations(locationArray)
