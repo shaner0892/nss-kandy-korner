@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 export const LocationList = () => {
     const [locations, modifyLocations] = useState([])
 
+    //this is watching for updates to the locations array and fetches them from the API
     useEffect(
         () => {
-            fetch("http://localhost:8090/locations")
+            fetch("http://localhost:8088/locations")
                 .then(res => res.json())
                 .then((locationArray) => {
                     modifyLocations(locationArray)
@@ -15,6 +16,7 @@ export const LocationList = () => {
         []
     )
 
+    //this is displaying the list of locations
     return (
         <>
         {

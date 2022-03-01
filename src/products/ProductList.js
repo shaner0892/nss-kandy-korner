@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 export const ProductList = () => {
     const [products, modifyProducts] = useState([])
 
+    //this is watching for updates to the products array and fetching them from the API
     useEffect(
         () => {
-            fetch("http://localhost:8090/products?_expand=productType&_sort=productTypeId&_order=asc")
+            fetch("http://localhost:8088/products?_expand=productType&_sort=productTypeId&_order=asc")
                 .then(res => res.json())
                 .then((productArray) => {
                     modifyProducts(productArray)
@@ -15,6 +16,7 @@ export const ProductList = () => {
         []
     )
 
+    //this displays the list of products
     return (
         <>
         {

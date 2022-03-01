@@ -1,5 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { EmployeeList } from "../employees/EmployeeList"
+import { HireEmployee } from "../employees/HiringForm"
 import { LocationList } from "../locations/LocationList"
 import { ProductList } from "../products/ProductList"
 //This is a Controller Component. Its only responsibility to to control the behavior of the system and maps URLs to components.
@@ -16,6 +18,14 @@ export const ApplicationViews = () => {
 
             <Route path="/products">
                 <ProductList />
+            </Route>
+
+            <Route exact path="/employees">
+                <EmployeeList />
+            </Route>
+
+            <Route path="/employees/apply">
+                <HireEmployee />
             </Route>
         </>
     )
