@@ -59,11 +59,12 @@ export const HireEmployee = () => {
     //this will be the form you display, you need to capture user input and save to new object
     return (
         <form className="employeeForm">
-            <h2 className="employeeForm__title">New Employee Application</h2>
+            <h2 className="employeeForm__title">New Employee Form</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Full Name: </label>
                     <input
+                        // what does required autoFocus do? ************
                         required autoFocus
                         type="text"
                         className="form-control"
@@ -85,50 +86,49 @@ export const HireEmployee = () => {
                         onChange={
                             (evt) => {
                                 const copy = {...employee}
-                                copy.locationId = evt.target.value
+                                copy.locationId = parseInt(evt.target.value)
                                 updateEmployee(copy)
                             }
-                        }>
+                        }
+                    >
                         <option value="0">Select your location</option>
-                            {
-                                locations.map((location) => {
-                                        return `<option value={location.id}/> {location.address}</option>`
-                                })
-                            }
+                            {locations.map((location) => {
+                                return <option value={location.id}>{location.address}</option>
+                            })}
                     </select> 
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="manager">Are you a manager? </label>
-                    <input
-                        className="form-control"
-                        onChange={
+                    <label htmlFor="manager">Manager: </label>
+                        <input type="radio" name="manager" value="true" onChange={
                             (evt) => {
                                 const copy = {...employee}
                                 copy.manager = evt.target.value
                                 updateEmployee(copy)
                             }
-                        } />
-                        <input type="radio" name="manager" value="true" />Yes
-                        <input type="radio" name="manager" value="false" />No
+                        }/>Yes
+                        <input type="radio" name="manager" value="false" onChange={
+                            (evt) => {
+                                const copy = {...employee}
+                                copy.manager = evt.target.value
+                                updateEmployee(copy)
+                            }
+                        }/>No
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="fullTime">Are you full time? </label>
-                    <input 
-                        required autoFocus
+                    <label htmlFor="fullTime">Full Time Employee: </label>
+                    <input type="checkbox"
                         className="form-control"
                         onChange={
                             (evt) => {
                                 const copy = {...employee}
-                                copy.fullTime = evt.target.value
+                                copy.fullTime = evt.target.checked
                                 updateEmployee(copy)
                             }
                         } />
-                        <label><input type="radio" name="fullTime" value="true" />Yes</label>
-                        <label><input type="radio" name="fullTime" value="false" />No</label>
                 </div>
             </fieldset>
             <fieldset>
@@ -149,7 +149,7 @@ export const HireEmployee = () => {
                 </div>
             </fieldset>
             <button className="btn btn-hire" onClick={apply}>
-                Apply
+                Submit
             </button>
         </form>
     )
