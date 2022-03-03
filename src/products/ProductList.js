@@ -1,6 +1,7 @@
 // utilize the useEffect() React hook to get the array of products from your API. All of this will be nearly identical to Honey Rae's
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
+import { getAllProducts } from "../ApiManager";
 
 
 export const ProductList = () => {
@@ -10,8 +11,7 @@ export const ProductList = () => {
     //this is watching for updates to the products array and fetching them from the API
     useEffect(
         () => {
-            fetch("http://localhost:8088/products?_expand=productType&_sort=productTypeId&_order=asc")
-                .then(res => res.json())
+            getAllProducts()
                 .then((productArray) => {
                     modifyProducts(productArray)
                 })

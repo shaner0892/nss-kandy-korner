@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getAllEmployees } from "../ApiManager";
 
 //this module is responsible for displaying the employee list
 
@@ -8,11 +9,10 @@ export const EmployeeList = () => {
     // const history = useHistory()
 
     const fetchEmployees= () => {
-        fetch("http://localhost:8088/employees?_expand=location")
-                .then(res => res.json())
-                .then((employeeArray) => {
-                    modifyEmployees(employeeArray)
-                })
+        getAllEmployees()
+            .then((employeeArray) => {
+                modifyEmployees(employeeArray)
+            })
     }
 
     //useEffect is a hook, it takes two arguments(function and array)

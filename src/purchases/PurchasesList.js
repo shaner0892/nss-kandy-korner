@@ -1,5 +1,6 @@
 // utilize the useEffect() React hook to get the array of purchases from your API. All of this will be nearly identical to Honey Rae's
 import React, { useEffect, useState } from "react";
+import { getCustomerPurchases } from "../ApiManager";
 
 export const PurchasesList = () => {
     const [purchases, modifyPurchases] = useState([])
@@ -10,8 +11,7 @@ export const PurchasesList = () => {
     // parseInt(localStorage.getItem("kandy_customer"))
     useEffect(
         () => {
-            fetch("http://localhost:8088/purchases?_expand=product&_expand=customer&_expand=location&_expand=employee")
-                .then(res => res.json())
+            getCustomerPurchases()
                 .then((purchaseArray) => {
                     modifyPurchases(purchaseArray)
                 })

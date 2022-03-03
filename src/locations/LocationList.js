@@ -1,5 +1,6 @@
 // utilize the useEffect() React hook to get the array of locations from your API. All of this will be nearly identical to Honey Rae's
 import React, { useEffect, useState } from "react";
+import { getAllLocations } from "../ApiManager";
 
 export const LocationList = () => {
     const [locations, modifyLocations] = useState([])
@@ -7,8 +8,7 @@ export const LocationList = () => {
     //this is watching for updates to the locations array and fetches them from the API
     useEffect(
         () => {
-            fetch("http://localhost:8088/locations")
-                .then(res => res.json())
+            getAllLocations()
                 .then((locationArray) => {
                     modifyLocations(locationArray)
                 })
