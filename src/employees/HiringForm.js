@@ -154,13 +154,3 @@ export const HireEmployee = () => {
         </form>
     )
 }
-
-
-// <input type="radio" className="form-control" value={location.id}/> location.id.address
-//                         onChange={
-//                             (evt) => {
-//                                 const copy = {...employee}
-//                                 copy.locationId = evt.target.value
-//                                 updateEmployee(copy)
-//                             }
-//                         }

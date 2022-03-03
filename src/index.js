@@ -5,6 +5,7 @@ import { KandyKorner } from './components/KandyKorner';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 
+//<BrowserRouter> tells React "I will be placing Routes in my KandyKorner component."
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter >

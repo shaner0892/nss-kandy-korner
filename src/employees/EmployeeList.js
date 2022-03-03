@@ -7,18 +7,31 @@ export const EmployeeList = () => {
     const [employees, modifyEmployees] = useState([])
     // const history = useHistory()
 
-    //useEffect is a hook, it takes two arguments(function and array)
-    //sole purpose is to run code when state changes(it's like an event listener)
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/employees?_expand=location")
+    const fetchEmployees= () => {
+        fetch("http://localhost:8088/employees?_expand=location")
                 .then(res => res.json())
                 .then((employeeArray) => {
                     modifyEmployees(employeeArray)
                 })
+    }
+
+    //useEffect is a hook, it takes two arguments(function and array)
+    //sole purpose is to run code when state changes(it's like an event listener)
+    useEffect(
+        () => {
+            fetchEmployees()
         },
         []
     )
+
+    const fireEmployee = (id) => {
+        fetch(`http://localhost:8088/employees/${id}`, {
+            method: "DELETE"
+        })
+        .then(()=> {
+            fetchEmployees()
+        })
+    }
 
     return (
         <>
@@ -27,7 +40,12 @@ export const EmployeeList = () => {
             {
                 employees.map(
                     (employee) => {
-                        return <p key={`employee--${employee.id}`}>{employee.fullName} {employee.location.address} Hourly Rate: {employee.hourlyRate}</p>
+                        return <div>
+                            <p key={`employee--${employee.id}`}>{employee.fullName} {employee.location.address} Hourly Rate: {employee.hourlyRate}</p>
+                            <button onClick={() => {
+                                fireEmployee(employee.id)
+                            }}>Fire Employee</button>
+                        </div>
                     }
                 )
             }
