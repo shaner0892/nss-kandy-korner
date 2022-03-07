@@ -33,4 +33,3 @@ export const PurchasesList = () => {
         </>
     )
 }
-// return <p key={`purchase--${purchase.id}`}>{purchase.product.name} ${purchase.product.price}</p>

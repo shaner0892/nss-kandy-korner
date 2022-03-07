@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getAllLocations } from "../ApiManager";
 
 export const HireEmployee = () => {
     //use the useState hook function to set the initial value of the new object
@@ -9,8 +10,7 @@ export const HireEmployee = () => {
     //this is watching for updates to the locations array and fetches them from the API, it updates locations to = the locations array from the API
     useEffect(
         () => {
-            fetch("http://localhost:8088/locations")
-                .then(res => res.json())
+            getAllLocations()
                 .then((locationArray) => {
                     modifyLocations(locationArray)
                 })
@@ -101,14 +101,14 @@ export const HireEmployee = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="manager">Manager: </label>
-                        <input type="radio" name="manager" value="true" onChange={
+                        <input type="radio" name="manager" value={true} onChange={
                             (evt) => {
                                 const copy = {...employee}
                                 copy.manager = evt.target.value
                                 updateEmployee(copy)
                             }
                         }/>Yes
-                        <input type="radio" name="manager" value="false" onChange={
+                        <input type="radio" name="manager" value={false} onChange={
                             (evt) => {
                                 const copy = {...employee}
                                 copy.manager = evt.target.value
@@ -136,13 +136,13 @@ export const HireEmployee = () => {
                     <label htmlFor="hourlyRate">Hourly Rate: </label>
                     <input 
                         required autoFocus
-                        type="text"
+                        type="float"
                         className="form-control"
                         placeholder="XX.XX"
                         onChange={
                             (evt) => {
                                 const copy = {...employee}
-                                copy.hourlyRate = evt.target.value
+                                copy.hourlyRate = parseFloat(evt.target.value)
                                 updateEmployee(copy)
                             }
                         } />
